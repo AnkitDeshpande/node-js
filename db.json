@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Buy groceries",
+      "completed": false
+    },
+    {
+      "id": "2",
+      "title": "Clean the house",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "title": "Finish homework",
+      "completed": false
+    },
+    {
+      "id": "1e68",
+      "title": "New Todo",
+      "completed": true
+    }
+  ]
+}
