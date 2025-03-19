@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import {Todo} from "../models/Todo";
+import {sendEmail} from "../middlewares/sendGridConfig";
 
 export const getTodos = async (req: Request, res: Response) => {
     const todos = await Todo.findAll();
@@ -11,6 +12,14 @@ export const addTodo = async (req: Request, res: Response) => {
     const newTodo = await Todo.create({title, completed: false});
     newTodo.dataValues.id = newTodo.id;
     res.status(201).json(newTodo);
+
+    // Send email notification
+    await sendEmail(
+        'ankit@yopmail.com',
+        'New Todo Created',
+        `A new todo with title "${title}" has been created.`,
+        `<p>A new todo with title "<strong>${title}</strong>" has been created.</p>`
+    );
 };
 
 export const updateTodo = async (req: Request, res: Response): Promise<any> => {
