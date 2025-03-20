@@ -15,7 +15,7 @@ setupSwagger(app);
 const startServer = async () => {
     await connectDB();
     await sequelize.sync({ force: false });
-    app.listen(5000, () => logger.info("🚀 Server running on port 5000"));
+    app.listen(5000, () => logger.info("Server running on port 5000"));
 };
 
 startServer().then(r => console.log("Server started successfully", r));
