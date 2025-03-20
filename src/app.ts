@@ -3,6 +3,7 @@ import cors from "cors";
 import todoRoutes from "./routes/todoRoutes";
 import {setupSwagger} from "./middlewares/swaggerConfig";
 import {connectDB, sequelize} from "./middlewares/databaseConfig";
+import logger from "./middlewares/LoggerConfig";
 
 const app = express();
 app.use(express.json());
@@ -14,7 +15,7 @@ setupSwagger(app);
 const startServer = async () => {
     await connectDB();
     await sequelize.sync({ force: false });
-    app.listen(5000, () => console.log("🚀 Server running on port 5000"));
+    app.listen(5000, () => logger.info("🚀 Server running on port 5000"));
 };
 
 startServer().then(r => console.log("Server started successfully", r));
