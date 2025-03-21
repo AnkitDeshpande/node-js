@@ -1,0 +1,72 @@
+2025-03-21 11:08:58 [32minfo[39m: Server running on port 5000
+2025-03-21 12:42:58 [32minfo[39m: Server running on port 5000
+2025-03-21 12:44:25 [32minfo[39m: Server running on port 5000
+2025-03-21 12:47:59 [32minfo[39m: Server running on port 5000
+2025-03-21 12:50:06 [32minfo[39m: Server running on port 5000
+2025-03-21 12:54:04 [32minfo[39m: Server running on port 5000
+2025-03-21 12:55:18 [32minfo[39m: Server running on port 5000
+2025-03-21 12:55:38 [32minfo[39m: Server running on port 5000
+2025-03-21 13:00:42 [32minfo[39m: Server running on port 5000
+2025-03-21 14:01:37 [32minfo[39m: Server running on port 5000
+2025-03-21 14:04:09 [32minfo[39m: Server running on port 5000
+2025-03-21 14:05:26 [32minfo[39m: Server running on port 5000
+2025-03-21 14:06:35 [32minfo[39m: Server running on port 5000
+2025-03-21 14:09:31 [32minfo[39m: Server running on port 5000
+2025-03-21 14:10:36 [32minfo[39m: Server running on port 5000
+2025-03-21 14:12:18 [32minfo[39m: Server running on port 5000
+2025-03-21 14:14:42 [32minfo[39m: Server running on port 5000
+2025-03-21 14:16:25 [32minfo[39m: Server running on port 5000
+2025-03-21 14:17:15 [32minfo[39m: Server running on port 5000
+2025-03-21 14:21:58 [32minfo[39m: Server running on port 5000
+2025-03-21 14:23:42 [32minfo[39m: Server running on port 5000
+2025-03-21 14:26:39 [32minfo[39m: Server running on port 5000
+2025-03-21 14:31:47 [32minfo[39m: Server running on port 5000
+2025-03-21 14:31:58 [32minfo[39m: Server running on port 5000
+2025-03-21 14:35:10 [32minfo[39m: Server running on port 5000
+2025-03-21 14:35:54 [32minfo[39m: Server running on port 5000
+2025-03-21 14:37:30 [32minfo[39m: Server running on port 5000
+2025-03-21 14:39:45 [32minfo[39m: Server running on port 5000
+2025-03-21 14:40:24 [32minfo[39m: Server running on port 5000
+2025-03-21 14:41:37 [32minfo[39m: Server running on port 5000
+2025-03-21 14:43:02 [32minfo[39m: Todo created with title: first todo
+2025-03-21 14:48:47 [32minfo[39m: Server running on port 5000
+2025-03-21 15:10:31 [32minfo[39m: Server running on port 5000
+2025-03-21 15:12:05 [32minfo[39m: Server running on port 5000
+2025-03-21 15:17:43 [32minfo[39m: Server running on port 5000
+2025-03-21 15:17:59 [32minfo[39m: Server running on port 5000
+2025-03-21 15:18:25 [32minfo[39m: Server running on port 5000
+2025-03-21 15:18:33 [32minfo[39m: Server running on port 5000
+2025-03-21 15:20:49 [32minfo[39m: Server running on port 5000
+2025-03-21 15:21:05 [32minfo[39m: Server running on port 5000
+2025-03-21 15:24:33 [32minfo[39m: Server running on port 5000
+2025-03-21 15:30:49 [32minfo[39m: Server running on port 5000
+2025-03-21 15:32:24 [32minfo[39m: Server running on port 5000
+2025-03-21 15:33:06 [32minfo[39m: Server running on port 5000
+2025-03-21 15:33:41 [32minfo[39m: Server running on port 5000
+2025-03-21 15:33:53 [32minfo[39m: Server running on port 5000
+2025-03-21 15:34:02 [32minfo[39m: Server running on port 5000
+2025-03-21 15:34:14 [32minfo[39m: Server running on port 5000
+2025-03-21 15:45:11 [32minfo[39m: Server running on port 5000
+2025-03-21 15:45:31 [32minfo[39m: Server running on port 5000
+2025-03-21 15:48:32 [32minfo[39m: Server running on port 5000
+2025-03-21 15:50:32 [32minfo[39m: Server running on port 5000
+2025-03-21 15:55:07 [32minfo[39m: Server running on port 5000
+2025-03-21 15:57:19 [32minfo[39m: Server running on port 5000
+2025-03-21 15:58:18 [32minfo[39m: Server running on port 5000
+2025-03-21 15:58:23 [32minfo[39m: Server running on port 5000
+2025-03-21 15:59:46 [32minfo[39m: Post created with title: first post
+2025-03-21 16:00:40 [32minfo[39m: Server running on port 5000
+2025-03-21 16:00:48 [32minfo[39m: Post created with title: second post
+2025-03-21 16:01:44 [32minfo[39m: Server running on port 5000
+2025-03-21 16:02:42 [32minfo[39m: Server running on port 5000
+2025-03-21 16:04:34 [32minfo[39m: Server running on port 5000
+2025-03-21 16:04:47 [32minfo[39m: Post created with title: 1st post for mayur
+2025-03-21 16:04:59 [32minfo[39m: Post created with title: 1st post for mayur
+2025-03-21 16:05:21 [31merror[39m: Error fetching user posts: WHERE parameter "userId" has invalid "undefined" value
+2025-03-21 16:06:51 [32minfo[39m: Server running on port 5000
+2025-03-21 16:07:13 [32minfo[39m: Server running on port 5000
+2025-03-21 16:07:38 [31merror[39m: Error fetching user posts: WHERE parameter "userId" has invalid "undefined" value
+2025-03-21 16:11:22 [31merror[39m: Error fetching user posts: WHERE parameter "userId" has invalid "undefined" value
+2025-03-21 16:11:58 [32minfo[39m: Server running on port 5000
+2025-03-21 16:13:41 [32minfo[39m: Server running on port 5000
+2025-03-21 16:51:25 [32minfo[39m: Server running on port 5000

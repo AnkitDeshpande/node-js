@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import { User } from "../models/User";
-import { Request, Response} from "express";
+import {User} from "../models/User";
+import {Request, Response} from "express";
 import jwt from "jsonwebtoken";
 
 interface SignupRequestBody {
@@ -9,67 +9,93 @@ interface SignupRequestBody {
     password: string;
 }
 
+interface SignInRequestBody {
+    email: string;
+    password: string;
+}
+
 const secretKey = process.env.JWT_SECRET_KEY || null;
 
 export const registerUser = async (req: Request<SignupRequestBody>, res: Response): Promise<any> => {
     try {
-        const { username, email, password } = req.body as SignupRequestBody;
-        const userExists = await User.findOne({
-            where: { email }
-        });
+        const {username, email, password} = req.body;
+        const userExists = await User.findOne({where: {email}, raw: true});
+
         if (userExists) {
-            return res.status(400).send('Email is already associated with an account');
+            return res.status(400).json({
+                success: false,
+                message: "Email is already associated with an account.",
+                timestamp: new Date().toISOString()
+            });
         }
 
-        await User.create({
-            username,
-            email,
-            password: await bcrypt.hash(password, 15),
+        const hashedPassword = await bcrypt.hash(password, 15);
+        await User.create({username, email, password: hashedPassword});
+
+        return res.status(201).json({
+            success: true,
+            message: "User registered successfully.",
+            timestamp: new Date().toISOString()
         });
-        return res.status(200).send('Registration successful');
     } catch (err) {
-        console.log(err);
-        return res.status(500).send('Error in registering user');
-    }
-}
-
-interface SignInRequest {
-    body: {
-        email: string;
-        password: string;
-    }
-}
-
-export const loginUser = async (req: Request<SignInRequest>, res: Response): Promise<any> => {
-    try {
-        const { email, password } = req.body;
-        const user = await User.findOne({
-            where: { email },
-            raw:true,
+        console.error(err);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error. Please try again later.",
+            timestamp: new Date().toISOString()
         });
+    }
+};
+
+export const loginUser = async (req: Request<{}, {}, SignInRequestBody>, res: Response): Promise<any> => {
+    try {
+        const {email, password} = req.body;
+        const user = await User.findOne({where: {email}, raw: true});
 
         if (!user) {
-            return res.status(401).json({ error: 'Authentication failed' });
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password.",
+                timestamp: new Date().toISOString()
+            });
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
-            return res.status(401).json({ error: 'Authentication failed' });
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password.",
+                timestamp: new Date().toISOString()
+            });
         }
 
         if (!secretKey) {
-            return res.status(500).json({ error: 'JWT_SECRET_KEY is not defined' });
+            return res.status(500).json({
+                success: false,
+                message: "Server error: Missing JWT secret key.",
+                timestamp: new Date().toISOString()
+            });
         }
-        const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' });
 
-        res.status(200).send({
-            id: user.id,
-            name: user.username,
-            email: user.email,
-            accessToken: token,
+        const token = jwt.sign({id: user.id}, secretKey, {expiresIn: "1h"});
+
+        return res.status(200).json({
+            success: true,
+            message: "Login successful.",
+            timestamp: new Date().toISOString(),
+            data: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                accessToken: token,
+            },
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Login failed' });
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error. Please try again later.",
+            timestamp: new Date().toISOString()
+        });
     }
-}
+};
