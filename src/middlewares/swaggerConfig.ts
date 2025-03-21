@@ -1,6 +1,6 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import {Application} from "express";
+import { Application } from "express";
 
 const options: swaggerJsdoc.Options = {
     definition: {
@@ -13,6 +13,20 @@ const options: swaggerJsdoc.Options = {
         servers: [
             {
                 url: "http://localhost:5000",
+            },
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT",
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
             },
         ],
     },

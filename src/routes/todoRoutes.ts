@@ -1,5 +1,6 @@
 import {Router} from "express";
 import {addTodo, deleteTodo, getTodos, updateTodo} from "../controllers/todoController";
+import {verifyToken} from "../middlewares/AuthConfig";
 
 const router = Router();
 
@@ -8,17 +9,21 @@ const router = Router();
  * /api/todos:
  *   get:
  *     summary: Get all todos
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of todos
  */
-router.get("/todos", getTodos);
+router.get("/todos", verifyToken, getTodos);
 
 /**
  * @swagger
  * /api/todos:
  *   post:
  *     summary: Add a new todo
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -34,13 +39,15 @@ router.get("/todos", getTodos);
  *       201:
  *         description: Todo added successfully
  */
-router.post("/todos", addTodo);
+router.post("/todos", verifyToken, addTodo);
 
 /**
  * @swagger
  * /api/todos/{id}:
  *   put:
  *     summary: Update a todo
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -64,13 +71,15 @@ router.post("/todos", addTodo);
  *       404:
  *         description: Todo not found
  */
-router.put("/todos/:id", updateTodo);
+router.put("/todos/:id", verifyToken, updateTodo);
 
 /**
  * @swagger
  * /api/todos/{id}:
  *   delete:
  *     summary: Delete a todo
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -83,6 +92,6 @@ router.put("/todos/:id", updateTodo);
  *       404:
  *         description: Todo not found
  */
-router.delete("/todos/:id", deleteTodo);
+router.delete("/todos/:id", verifyToken, deleteTodo);
 
 export default router;

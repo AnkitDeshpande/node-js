@@ -4,12 +4,14 @@ import todoRoutes from "./routes/todoRoutes";
 import {setupSwagger} from "./middlewares/swaggerConfig";
 import {connectDB, sequelize} from "./middlewares/databaseConfig";
 import logger from "./middlewares/LoggerConfig";
+import authRoute from "./routes/authRoute";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.use("/api", todoRoutes);
+app.use("/auth", authRoute)
 setupSwagger(app);
 
 const startServer = async () => {
