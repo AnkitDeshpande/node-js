@@ -11,7 +11,7 @@ interface SignupRequestBody {
 
 const secretKey = process.env.JWT_SECRET_KEY || null;
 
-export const registerUser = async (req: Request, res: Response): Promise<any> => {
+export const registerUser = async (req: Request<SignupRequestBody>, res: Response): Promise<any> => {
     try {
         const { username, email, password } = req.body as SignupRequestBody;
         const userExists = await User.findOne({
