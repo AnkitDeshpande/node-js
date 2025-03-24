@@ -2,6 +2,9 @@
 
 const { DataTypes } = require("sequelize");
 
+const tableExists = await queryInterface.describeTable("todos").catch(() => null);
+if (!tableExists) return;
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {

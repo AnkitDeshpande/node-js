@@ -1,5 +1,7 @@
 "use strict";
 
+const tableExists = await queryInterface.describeTable("users").catch(() => null);
+if (!tableExists) return;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     const { DataTypes } = Sequelize;
-    await queryInterface.createTable("users", {
+    await queryInterface.createTableIfNotExist("users", {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
