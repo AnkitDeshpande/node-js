@@ -15,11 +15,10 @@ Before starting, ensure you have the following installed on your system:
 
 ## **Setup Instructions**
 
-### 1. Clone the Repository
-If you haven't already cloned the repository, run:
+### 1. checkout directory
 ```bash
-git clone https://github.com/AnkitDeshpande/node-js.git
-cd Social media application
+extract the file and checkout
+cd todoapplication
 ```
 
 ### 2. Install Dependencies
