@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-const secretKey = process.env.JWT_SECRET_KEY || null;
-
 export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
     const token = req.header("Authorization")?.split(" ")[1];
 
@@ -10,12 +8,12 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): vo
         res.status(401).json({ message: "Access token is missing or invalid" });
         return;
     }
-    if (!secretKey) {
+    if (!process.env.JWT_SECRET_KEY) {
         res.status(500).json({ message: "JWT_SECRET_KEY is not defined" });
         return;
     }
     try {
-        jwt.verify(token, secretKey);
+        jwt.verify(token, process.env.JWT_SECRET_KEY);
         next();
     } catch (error) {
        res.status(401).json({ message: "Invalid token" });

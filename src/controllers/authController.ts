@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
-import {User} from "../models/User";
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { User } from "../models/User";
 
 interface SignupRequestBody {
     username: string;
@@ -14,12 +14,10 @@ interface SignInRequestBody {
     password: string;
 }
 
-const secretKey = process.env.JWT_SECRET_KEY || null;
-
 export const registerUser = async (req: Request<SignupRequestBody>, res: Response): Promise<any> => {
     try {
-        const {username, email, password} = req.body;
-        const userExists = await User.findOne({where: {email}, raw: true});
+        const { username, email, password } = req.body;
+        const userExists = await User.findOne({ where: { email }, raw: true });
 
         if (userExists) {
             return res.status(400).json({
@@ -30,7 +28,7 @@ export const registerUser = async (req: Request<SignupRequestBody>, res: Respons
         }
 
         const hashedPassword = await bcrypt.hash(password, 15);
-        await User.create({username, email, password: hashedPassword});
+        await User.create({ username, email, password: hashedPassword });
 
         return res.status(201).json({
             success: true,
@@ -49,8 +47,8 @@ export const registerUser = async (req: Request<SignupRequestBody>, res: Respons
 
 export const loginUser = async (req: Request<{}, {}, SignInRequestBody>, res: Response): Promise<any> => {
     try {
-        const {email, password} = req.body;
-        const user = await User.findOne({where: {email}, raw: true});
+        const { email, password } = req.body;
+        const user = await User.findOne({ where: { email }, raw: true });
 
         if (!user) {
             return res.status(401).json({
@@ -69,7 +67,7 @@ export const loginUser = async (req: Request<{}, {}, SignInRequestBody>, res: Re
             });
         }
 
-        if (!secretKey) {
+        if (!process.env.JWT_SECRET_KEY) {
             return res.status(500).json({
                 success: false,
                 message: "Server error: Missing JWT secret key.",
@@ -77,7 +75,7 @@ export const loginUser = async (req: Request<{}, {}, SignInRequestBody>, res: Re
             });
         }
 
-        const token = jwt.sign({id: user.id}, secretKey, {expiresIn: "1h"});
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
 
         return res.status(200).json({
             success: true,
