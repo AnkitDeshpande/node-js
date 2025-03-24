@@ -6,6 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "NODE_ENV=development nodemon --ext ts --exec ts-node src/app.ts",
+    "migrate:development:up:all": "NODE_ENV=development npx sequelize-cli db:migrate --config config/config.js",
+    "migrate:development:down:all": "NODE_ENV=development npx sequelize-cli db:migrate:undo:all --config config/config.js",
     "prod": "NODE_ENV=production node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +23,7 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.13.0",
     "sequelize": "^6.37.6",
+    "sequelize-cli": "^6.6.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
