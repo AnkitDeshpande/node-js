@@ -13,7 +13,7 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     const { DataTypes } = Sequelize;
-    await queryInterface.createTableIfNotExist("users", {
+    await queryInterface.createTable("users", {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
